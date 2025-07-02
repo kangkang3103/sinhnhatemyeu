@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Happy Birthday's Mai Trang</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background: radial-gradient(circle at center, #1e1e1e, #000000);
+      font-family: 'Segoe UI', sans-serif;
+      color: white;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    h1 {
+      margin-top: 50px;
+      font-size: 3em;
+      text-shadow: 0 0 10px #ff66cc;
+      animation: pulse 2s infinite;
+    }
+
+    .wish {
+      font-size: 1.5em;
+      margin-top: 15px;
+      color: #ffccff;
+      text-shadow: 0 0 10px #ff99ff;
+      animation: fadeIn 3s ease-in-out infinite alternate;
+    }
+
+    .photo {
+      margin-top: 25px;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid white;
+      box-shadow: 0 0 20px #ff66cc;
+      object-fit: cover;
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+
+    .audio-control {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255,255,255,0.1);
+      padding: 10px 20px;
+      border-radius: 20px;
+      backdrop-filter: blur(10px);
+      z-index: 1000;
+    }
+
+    @keyframes pulse {
+      0%, 100% { text-shadow: 0 0 10px #ff66cc; }
+      50% { text-shadow: 0 0 30px #ff66cc, 0 0 60px #ff3399; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0.6; }
+      to { opacity: 1; }
+    }
+
+    @keyframes glow {
+      from { box-shadow: 0 0 10px #ff66cc; }
+      to   { box-shadow: 0 0 30px #ff3399, 0 0 60px #ff66cc; }
+    }
+
+    /* Balloons */
+    .balloon {
+      position: absolute;
+      bottom: -100px;
+      width: 40px;
+      height: 55px;
+      border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+      animation: float 10s linear infinite;
+      z-index: 1;
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      bottom: -20px;
+      left: 50%;
+      width: 2px;
+      height: 20px;
+      background: white;
+      transform: translateX(-50%);
+    }
+
+    @keyframes float {
+      0%   { transform: translateY(0) rotate(0); opacity: 1; }
+      100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Fireworks */
+    .firework {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: yellow;
+      border-radius: 50%;
+      animation: explode 1s ease-out forwards;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    @keyframes explode {
+      from { transform: scale(0); opacity: 1; }
+      to   { transform: scale(3); opacity: 0; }
+    }
+
+    /* Hearts */
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      color: pink;
+      animation: flyUp 6s ease-in infinite;
+      z-index: 0;
+    }
+
+    @keyframes flyUp {
+      from { transform: translateY(0); opacity: 1; }
+      to   { transform: translateY(-100vh); opacity: 0; }
+    }
+
+    /* Flowers */
+    .flower {
+      position: absolute;
+      font-size: 24px;
+      color: #ffcccc;
+      animation: fallDown 8s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes fallDown {
+      from { transform: translateY(-10vh); opacity: 0.8; }
+      to   { transform: translateY(120vh); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎉 Happy birthday's Bé Đậu 💖 🎂</h1>
+
+  <img src="mai-trang.jpg" alt="Mai Trang" class="photo">
+
+  <div class="wish">
+    Chúc em bé của anh luôn xinh đẹp nà, gặp nhiều may mắn nà, thuận lợi mọi điều<br>
+    và mỗi ngày trôi qua đều là ngày hạnh phúc nà! YÊU EMMMMMMMMM 💖✨🌸
+  </div>
+
+  <!-- Nhạc nền -->
+  <div class="audio-control">
+    <audio controls autoplay loop>
+      <source src="happy-birthday.mp3" type="audio/mpeg">
+    </audio>
+  </div>
+
+  <script>
+    // Balloons
+    for (let i = 0; i < 25; i++) {
+      let b = document.createElement('div');
+      b.className = 'balloon';
+      b.style.left = Math.random() * 100 + 'vw';
+      b.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 75%)`;
+      b.style.animationDelay = Math.random() * 10 + 's';
+      document.body.appendChild(b);
+    }
+
+    // Fireworks
+    function createFirework() {
+      const num = 15;
+      const x = Math.random() * window.innerWidth;
+      const y = Math.random() * window.innerHeight / 2;
+
+      for (let i = 0; i < num; i++) {
+        const f = document.createElement('div');
+        f.className = 'firework';
+        const angle = Math.random() * 2 * Math.PI;
+        const distance = Math.random() * 80 + 30;
+        const dx = Math.cos(angle) * distance;
+        const dy = Math.sin(angle) * distance;
+        f.style.left = x + 'px';
+        f.style.top = y + 'px';
+        f.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        f.style.transform = `translate(${dx}px, ${dy}px) scale(0)`;
+        document.body.appendChild(f);
+        requestAnimationFrame(() => {
+          f.style.transform = `translate(${dx}px, ${dy}px) scale(1)`;
+        });
+        setTimeout(() => f.remove(), 1000);
+      }
+    }
+    setInterval(createFirework, 1000);
+
+    // Hearts
+    setInterval(() => {
+      const heart = document.createElement('div');
+      heart.className = 'heart';
+      heart.innerText = '💖';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.bottom = '0';
+      heart.style.fontSize = Math.random() * 20 + 15 + 'px';
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 6000);
+    }, 800);
+
+    // Flowers
+    setInterval(() => {
+      const flower = document.createElement('div');
+      flower.className = 'flower';
+      flower.innerText = '🌸';
+      flower.style.left = Math.random() * 100 + 'vw';
+      flower.style.top = '-20px';
+      flower.style.fontSize = Math.random() * 20 + 20 + 'px';
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 8000);
+    }, 700);
+  </script>
+
+</body>
+</html>
