@@ -2,30 +2,39 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Happy Birthday's Mai Trang</title>
   <style>
     * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
+      margin: 0; padding: 0; box-sizing: border-box;
     }
-    body {
-      background: radial-gradient(circle at center, #1e1e1e, #000000);
+
+    html, body {
+      height: 100%;
       font-family: 'Segoe UI', sans-serif;
-      color: white;
+      background: radial-gradient(circle at center, #1e1e1e, #000000);
       overflow: hidden;
+      color: white;
+    }
+
+    .container {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
       text-align: center;
+      padding: 20px;
     }
 
     h1 {
-      margin-top: 50px;
-      font-size: 3em;
+      font-size: 2.5em;
       text-shadow: 0 0 10px #ff66cc;
       animation: pulse 2s infinite;
     }
 
     .wish {
-      font-size: 1.5em;
+      font-size: 1.3em;
       margin-top: 15px;
       color: #ffccff;
       text-shadow: 0 0 10px #ff99ff;
@@ -33,9 +42,9 @@
     }
 
     .photo {
-      margin-top: 25px;
-      width: 200px;
-      height: 200px;
+      margin-top: 20px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
       border: 4px solid white;
       box-shadow: 0 0 20px #ff66cc;
@@ -44,10 +53,7 @@
     }
 
     .audio-control {
-      position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      margin-top: 20px;
       background: rgba(255,255,255,0.1);
       padding: 10px 20px;
       border-radius: 20px;
@@ -62,7 +68,7 @@
 
     @keyframes fadeIn {
       from { opacity: 0.6; }
-      to { opacity: 1; }
+      to   { opacity: 1; }
     }
 
     @keyframes glow {
@@ -70,9 +76,12 @@
       to   { box-shadow: 0 0 30px #ff3399, 0 0 60px #ff66cc; }
     }
 
-    /* Balloons */
-    .balloon {
+    .balloon, .firework, .heart, .flower {
       position: absolute;
+      pointer-events: none;
+    }
+
+    .balloon {
       bottom: -100px;
       width: 40px;
       height: 55px;
@@ -97,15 +106,12 @@
       100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
     }
 
-    /* Fireworks */
     .firework {
-      position: absolute;
       width: 6px;
       height: 6px;
       background: yellow;
       border-radius: 50%;
       animation: explode 1s ease-out forwards;
-      pointer-events: none;
       z-index: 2;
     }
 
@@ -114,9 +120,7 @@
       to   { transform: scale(3); opacity: 0; }
     }
 
-    /* Hearts */
     .heart {
-      position: absolute;
       font-size: 20px;
       color: pink;
       animation: flyUp 6s ease-in infinite;
@@ -128,9 +132,7 @@
       to   { transform: translateY(-100vh); opacity: 0; }
     }
 
-    /* Flowers */
     .flower {
-      position: absolute;
       font-size: 24px;
       color: #ffcccc;
       animation: fallDown 8s linear infinite;
@@ -141,24 +143,28 @@
       from { transform: translateY(-10vh); opacity: 0.8; }
       to   { transform: translateY(120vh); opacity: 0; }
     }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 { font-size: 1.8em; }
+      .wish { font-size: 1.1em; }
+      .photo { width: 140px; height: 140px; }
+    }
   </style>
 </head>
 <body>
 
-  <h1>🎉 Happy birthday's Bé Đậu 💖 🎂</h1>
-
-  <img src="mai-trang.jpg" alt="Mai Trang" class="photo">
-
-  <div class="wish">
-    Chúc em bé của anh luôn xinh đẹp nà, gặp nhiều may mắn nà, thuận lợi mọi điều<br>
-    và mỗi ngày trôi qua đều là ngày hạnh phúc nà! YÊU EMMMMMMMMM 💖✨🌸
-  </div>
-
-  <!-- Nhạc nền -->
-  <div class="audio-control">
-    <audio controls autoplay loop>
-      <source src="happy-birthday.mp3" type="audio/mpeg">
-    </audio>
+  <div class="container">
+    <h1>🎉 Happy birthday's Bé Đậu 💖 🎂</h1>
+    <img src="mai-trang.jpg" alt="Mai Trang" class="photo">
+    <div class="wish">
+     Chúc em bé của anh luôn xinh đẹp nà, gặp nhiều may mắn nà, thuận lợi mọi điều và mỗi ngày trôi qua đều là ngày hạnh phúc nà! YÊU EMMMMMMMMM 💖✨🌸
+    </div>
+    <div class="audio-control">
+      <audio controls autoplay loop>
+        <source src="happy-birthday.mp3" type="audio/mpeg">
+      </audio>
+    </div>
   </div>
 
   <script>
@@ -177,7 +183,6 @@
       const num = 15;
       const x = Math.random() * window.innerWidth;
       const y = Math.random() * window.innerHeight / 2;
-
       for (let i = 0; i < num; i++) {
         const f = document.createElement('div');
         f.className = 'firework';
